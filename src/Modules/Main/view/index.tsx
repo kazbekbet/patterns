@@ -1,7 +1,8 @@
 import React from 'react';
+import { HeadingText } from '../../../Common/Components/Typography/HeadingText';
 
 const MainPage = () => {
-    return <h1>Основная страница приложения lorem</h1>;
+    return <HeadingText type='PAGE_TITLE'>О проекте</HeadingText>;
 };
 
 export default MainPage;
