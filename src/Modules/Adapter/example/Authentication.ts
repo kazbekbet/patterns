@@ -1,8 +1,13 @@
+export interface UserData {
+    login: string;
+    password: string;
+}
+
 /**
  * Целевой класс авторизации пользователя в системе.
  * */
-export class Authentication {
-    constructor(private login: string, private password: string) {}
+export class Authentication implements UserData {
+    constructor(public login: string, public password: string) {}
 
     /**
      * Метод авторизации в систему, проверяющий корректность данных.

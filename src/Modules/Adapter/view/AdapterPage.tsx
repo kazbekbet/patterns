@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import { HeadingText } from '../../../Common/Components/Typography/HeadingText';
+import { H3 } from 'baseui/typography';
+import { Cell, Grid } from 'baseui/layout-grid';
+
 import { AdapterForm } from './components/AdapterForm';
 import { Authentication } from '../example/Authentication';
 import { Adapter } from '../example/Adapter';
@@ -10,7 +11,7 @@ import { Adapter } from '../example/Adapter';
  * */
 const AdapterPage = () => {
     const [login, setLogin] = useState<string>('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState<string>('');
 
     const handleSignInNormal = () => {
         const normalAuth = new Authentication(login, password);
@@ -18,7 +19,7 @@ const AdapterPage = () => {
     };
 
     const handleSignInAdapt = () => {
-        const adaptUserData = new Adapter(login, password).getUserIdFromLogin();
+        const adaptUserData = new Adapter(login, password).checkAndTransformLogin();
         if (adaptUserData.login && adaptUserData.password) {
             const adaptAuth = new Authentication(adaptUserData.login, adaptUserData.password);
             adaptAuth.signIn();
@@ -26,21 +27,19 @@ const AdapterPage = () => {
     };
 
     return (
-        <>
-            <HeadingText type='PAGE_TITLE'>Паттерн "Адаптер"</HeadingText>
-            <Grid container spacing={3}>
-                <Grid item xs={6} lg={6} xl={4}>
-                    <AdapterForm
-                        login={login}
-                        password={password}
-                        onLoginChange={value => setLogin(value)}
-                        onPasswordChange={value => setPassword(value)}
-                        signInActionNormal={handleSignInNormal}
-                        signInActionAdapt={handleSignInAdapt}
-                    />
-                </Grid>
-            </Grid>
-        </>
+        <Grid>
+            <Cell span={[12, 10, 8]}>
+                <H3>Паттерн "Адаптер"</H3>
+                <AdapterForm
+                    login={login}
+                    password={password}
+                    onLoginChange={value => setLogin(value)}
+                    onPasswordChange={value => setPassword(value)}
+                    signInActionNormal={handleSignInNormal}
+                    signInActionAdapt={handleSignInAdapt}
+                />
+            </Cell>
+        </Grid>
     );
 };
 

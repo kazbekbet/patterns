@@ -1,13 +1,15 @@
 /**
  * Класс адаптер, трансформирующий данные пользователя по старому методу.
  * */
-export class Adapter {
-    constructor(private login: string, private password: string) {}
+import { UserData } from './Authentication';
+
+export class Adapter implements UserData {
+    constructor(public login: string, public password: string) {}
 
     /**
      * Метод, проверяющий корректность префикса и трансформирующий его в legacy.
      * */
-    public getUserIdFromLogin() {
+    public checkAndTransformLogin() {
         const separatedLogin = this.login.split('_');
         const loginPrefix = separatedLogin[0];
 

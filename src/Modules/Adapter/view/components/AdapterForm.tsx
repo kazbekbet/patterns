@@ -1,8 +1,8 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import { HeadingText } from '../../../../Common/Components/Typography/HeadingText';
+import React, { FormEvent } from 'react';
+import { Label1 } from 'baseui/typography';
+import { Card } from 'baseui/card';
+import { Button, KIND } from 'baseui/button';
+import { Input } from 'baseui/input';
 
 interface OwnProps {
     login: string;
@@ -13,52 +13,51 @@ interface OwnProps {
     signInActionAdapt: () => void;
 }
 
-export const AdapterForm: React.FC<OwnProps> = ({ login, password, onLoginChange, onPasswordChange, signInActionNormal, signInActionAdapt }) => {
+export const AdapterForm: React.FC<OwnProps> = props => {
+    const { login, password, onLoginChange, onPasswordChange, signInActionNormal, signInActionAdapt } = props;
+
+    const handleSignInNormal = (e: React.MouseEvent | FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        signInActionNormal();
+    };
+
+    const handleSignInAdapt = (e: React.MouseEvent) => {
+        e.preventDefault();
+        signInActionAdapt();
+    };
+
     return (
-        <Paper className='paper-container'>
-            <form noValidate autoComplete='off'>
-                <HeadingText type={'ELEMENT_TITLE'} color={'primary'}>
-                    Авторизация
-                </HeadingText>
+        <Card>
+            <form noValidate autoComplete='off' onSubmit={handleSignInNormal}>
+                <Label1>Авторизация</Label1>
                 <div className='text-input'>
-                    <TextField
-                        fullWidth
+                    <Input
                         value={login}
-                        id='login'
-                        label='Логин'
-                        variant='outlined'
-                        onChange={e => onLoginChange(e.target.value)}
+                        onChange={event => onLoginChange(event.currentTarget.value)}
+                        placeholder='Введите логин'
                     />
                 </div>
                 <div className='text-input'>
-                    <TextField
-                        fullWidth
+                    <Input
+                        type='password'
                         value={password}
-                        id='password'
-                        label='Пароль'
-                        variant='outlined'
-                        onChange={e => onPasswordChange(e.target.value)}
+                        onChange={event => onPasswordChange(event.currentTarget.value)}
+                        placeholder='Введите пароль'
                     />
                 </div>
                 <div className='form-actions'>
-                    <Button
-                        variant='contained'
-                        color='primary'
-                        onClick={signInActionNormal}
-                        disabled={login.length < 1 || password.length < 1}
-                    >
+                    <Button onClick={handleSignInNormal} disabled={login.length < 1 || password.length < 1}>
                         Войти по старому методу
                     </Button>
                     <Button
-                        variant='outlined'
-                        color='secondary'
-                        onClick={signInActionAdapt}
+                        kind={KIND.secondary}
+                        onClick={handleSignInAdapt}
                         disabled={login.length < 1 || password.length < 1}
                     >
                         Войти по новому методу
                     </Button>
                 </div>
             </form>
-        </Paper>
+        </Card>
     );
 };
