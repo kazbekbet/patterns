@@ -17,19 +17,21 @@ enum HeadingTextTypes {
  * @prop {string} children - Текстовый контент.
  * @prop {keyof typeof HeadingTextTypes} type - Тип заголовка.
  * @prop {boolean} [hideGutter] - Флаг скрытия отступа снизу.
+ * @prop {'primary' | 'secondary'} [color] - Цвет заголовка
  * */
 interface OwnProps {
     children: string;
     type: keyof typeof HeadingTextTypes;
     hideGutter?: boolean;
+    color?: 'primary' | 'secondary';
 }
 
 /**
  * Компонент заголовков.
  * */
-export const HeadingText: React.FC<OwnProps> = ({ children, type, hideGutter }) => {
+export const HeadingText: React.FC<OwnProps> = ({ children, type, hideGutter, color }) => {
     return (
-        <Typography variant={HeadingTextTypes[type]} gutterBottom={!hideGutter}>
+        <Typography variant={HeadingTextTypes[type]} gutterBottom={!hideGutter} color={color}>
             {children}
         </Typography>
     );
