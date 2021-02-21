@@ -8,8 +8,15 @@ export class Authentication {
      * Метод авторизации в систему, проверяющий корректность данных.
      * */
     public signIn() {
-        if (this.login.split('_')[0] === 'legacy') {
+        const separatedLogin = this.login.split('_');
+        const loginPrefix = separatedLogin[0];
+
+        if (loginPrefix && loginPrefix === 'legacy') {
             alert(`Пользователь ${this.login} успешно авторизован!`);
-        } else alert(`Проверьте корректность вводимых данных ${this.login}`);
+            return { login: this.login, password: this.password };
+        } else {
+            alert(`Проверьте корректность вводимых данных ${this.login}`);
+            return { login: null, password: null };
+        }
     }
 }
