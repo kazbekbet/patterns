@@ -1,3 +1,9 @@
+/**
+ * Модель пользовательских данных.
+ *
+ * @prop {string} login - Логин.
+ * @prop {string} password - Пароль.
+ * */
 export interface UserData {
     login: string;
     password: string;
@@ -7,7 +13,7 @@ export interface UserData {
  * Целевой класс авторизации пользователя в системе.
  * */
 export class Authentication implements UserData {
-    constructor(public login: string, public password: string) {}
+    constructor(public readonly login: string, public readonly password: string) {}
 
     /**
      * Метод авторизации в систему, проверяющий корректность данных.

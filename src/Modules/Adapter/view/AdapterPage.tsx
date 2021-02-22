@@ -28,8 +28,10 @@ const AdapterPage = () => {
 
     return (
         <Grid>
-            <Cell span={[12, 10, 8]}>
+            <Cell span={12}>
                 <H3>Паттерн "Адаптер"</H3>
+            </Cell>
+            <Cell span={[12, 8, 6, 4]}>
                 <AdapterForm
                     login={login}
                     password={password}

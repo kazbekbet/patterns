@@ -4,7 +4,7 @@
 import { UserData } from './Authentication';
 
 export class Adapter implements UserData {
-    constructor(public login: string, public password: string) {}
+    constructor(public readonly login: string, public readonly password: string) {}
 
     /**
      * Метод, проверяющий корректность префикса и трансформирующий его в legacy.
