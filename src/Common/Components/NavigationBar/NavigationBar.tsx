@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useStyletron } from 'baseui';
 import { Layer } from 'baseui/layer';
 import { AppNavBar, setItemActive } from 'baseui/app-nav-bar';
@@ -12,8 +12,14 @@ export interface NavigationProps {
 export const NavigationBar: React.FC<NavigationProps> = ({ children }) => {
     const [css] = useStyletron();
     const history = useHistory();
+    const location = useLocation().pathname;
 
-    const [mainItems, setMainItems] = React.useState<MenuElement[]>(menuItemsList);
+    const [mainItems, setMainItems] = React.useState<MenuElement[]>(
+        menuItemsList.map(item => ({
+            ...item,
+            active: item.path === location,
+        }))
+    );
 
     function handleMainItemSelect(item: MenuElement) {
         setMainItems(prev => setItemActive(prev, item));
