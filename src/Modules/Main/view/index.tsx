@@ -1,8 +1,15 @@
 import React from 'react';
-import { HeadingText } from '../../../Common/Components/Typography/HeadingText';
+import { Cell, Grid } from 'baseui/layout-grid';
+import { H3 } from 'baseui/typography';
 
 const MainPage = () => {
-    return <HeadingText type='PAGE_TITLE'>О проекте</HeadingText>;
+    return (
+        <Grid>
+            <Cell span={12}>
+                <H3>О проекте</H3>
+            </Cell>
+        </Grid>
+    );
 };
 
 export default MainPage;

@@ -2,8 +2,9 @@ import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { PATH } from './paths';
 import * as lazy from './lazyImports';
-import { SpinnerDefault } from '../Common/Components/Spinners/SpinnerDefault';
-import { DrawerOwnProps } from '../Common/Components/Drawer/model';
+import { NavigationProps } from '../Common/Components/NavigationBar/NavigationBar';
+import SpinnerDefault from "../Common/Components/Spinners/SpinnerDefault";
+
 
 /**
  * Собственные свойства компонента.
@@ -11,7 +12,7 @@ import { DrawerOwnProps } from '../Common/Components/Drawer/model';
  * @prop {React.FC} DrawerComponent - Dependency Injection навигационного меню приложения.
  * */
 interface OwnProps {
-    DrawerComponent: React.FC<DrawerOwnProps>;
+    DrawerComponent: React.FC<NavigationProps>;
 }
 
 /**

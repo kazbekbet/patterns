@@ -1,45 +1,31 @@
 import React from 'react';
 import { PATH } from './paths';
-import HomeWorkTwoToneIcon from '@material-ui/icons/HomeWorkTwoTone';
-import StarsTwoToneIcon from '@material-ui/icons/StarsTwoTone';
-
-export type MenuConfig = MenuElement[];
+import { NavItemT } from 'baseui/app-nav-bar';
 
 /**
  * Модель элемента меню.
  *
- * @prop {string} name - Наименование элемента.
  * @prop {PATH} path - Enum с путями роутинга.
- * @prop {JSX.Element} icon - Иконка пункта меню.
- * @prop {boolean} [divide] - Флаг подчеркивания пункта.
  * */
-interface MenuElement {
-    name: string;
-    path: PATH;
-    icon: JSX.Element;
-    divide?: boolean;
+export interface MenuElement extends NavItemT {
+    path?: PATH;
 }
 
-export const menuItemsList: MenuConfig = [
+export const menuItemsList: MenuElement[] = [
     {
-        name: 'О проекте',
+        label: 'О проекте',
         path: PATH.MAIN_PAGE,
-        icon: <HomeWorkTwoToneIcon />,
-        divide: true,
     },
     {
-        name: 'Адаптер',
+        label: 'Адаптер',
         path: PATH.ADAPTER,
-        icon: <StarsTwoToneIcon />,
     },
     {
-        name: 'Мост',
+        label: 'Мост',
         path: PATH.BRIDGE,
-        icon: <StarsTwoToneIcon />,
     },
     {
-        name: 'Компоновщик',
+        label: 'Компоновщик',
         path: PATH.COMPOSITE,
-        icon: <StarsTwoToneIcon />,
     },
 ];
