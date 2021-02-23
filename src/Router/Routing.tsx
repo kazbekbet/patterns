@@ -1,10 +1,12 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { PATH } from './paths';
-import * as lazy from './lazyImports';
+import * as lazy from './utils/lazyImports';
 import { NavigationProps } from '../Common/Components/NavigationBar/NavigationBar';
-import SpinnerDefault from "../Common/Components/Spinners/SpinnerDefault";
-
+import SpinnerDefault from '../Common/Components/Spinners/SpinnerDefault';
+import { PATH } from './paths/paths';
+import { StructuralRoutes } from './Routes/StructuralRoutes';
+import { BehavioralRoutes } from './Routes/BehavioralRoutes';
+import { CreationalRoutes } from "./Routes/CreationalRoutes";
 
 /**
  * Собственные свойства компонента.
@@ -24,7 +26,9 @@ export const Routing: React.FC<OwnProps> = ({ DrawerComponent }) => (
             <DrawerComponent>
                 <Switch>
                     <Route path={PATH.MAIN_PAGE} component={lazy.MainComponent} exact />
-                    <Route path={PATH.ADAPTER} component={lazy.AdapterComponent} exact />
+                    <StructuralRoutes />
+                    <BehavioralRoutes />
+                    <CreationalRoutes />
                     <Redirect to={PATH.MAIN_PAGE} />
                 </Switch>
             </DrawerComponent>

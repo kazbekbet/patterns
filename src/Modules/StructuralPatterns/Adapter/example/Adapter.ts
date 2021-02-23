@@ -1,8 +1,8 @@
+import { UserData } from './Authentication';
+
 /**
  * Класс адаптер, трансформирующий данные пользователя по старому методу.
  * */
-import { UserData } from './Authentication';
-
 export class Adapter implements UserData {
     constructor(public readonly login: string, public readonly password: string) {}
 
@@ -10,14 +10,13 @@ export class Adapter implements UserData {
      * Метод, проверяющий корректность префикса и трансформирующий его в legacy.
      * */
     public checkAndTransformLogin() {
-        const separatedLogin = this.login.split('_');
-        const loginPrefix = separatedLogin[0];
+        const { prefix, id } = this.getSeparatedLogin();
 
-        if (loginPrefix) {
-            switch (loginPrefix) {
+        if (prefix) {
+            switch (prefix) {
                 case 'new':
                     return {
-                        login: `legacy_${separatedLogin[1]}`,
+                        login: `legacy_${id}`,
                         password: this.password,
                     };
                 case 'legacy':
@@ -29,6 +28,15 @@ export class Adapter implements UserData {
                     return this.userNotFound();
             }
         } else return this.userNotFound();
+    }
+
+    /**
+     * Разделение данных логина.
+     * */
+    private getSeparatedLogin() {
+        const [loginPrefix, pureId] = this.login.split('_');
+
+        return { prefix: loginPrefix, id: pureId };
     }
 
     /**

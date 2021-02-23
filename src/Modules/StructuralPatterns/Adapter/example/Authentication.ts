@@ -19,8 +19,7 @@ export class Authentication implements UserData {
      * Метод авторизации в систему, проверяющий корректность данных.
      * */
     public signIn() {
-        const separatedLogin = this.login.split('_');
-        const loginPrefix = separatedLogin[0];
+        const [loginPrefix] = this.login.split('_');
 
         if (loginPrefix && loginPrefix === 'legacy') {
             alert(`Пользователь ${this.login} успешно авторизован!`);

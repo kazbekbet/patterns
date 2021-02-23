@@ -1,6 +1,6 @@
 import React from 'react';
-import { PATH } from './paths';
 import { NavItemT } from 'baseui/app-nav-bar';
+import { PATH } from '../paths/paths';
 
 /**
  * Модель элемента меню.
@@ -8,7 +8,7 @@ import { NavItemT } from 'baseui/app-nav-bar';
  * @prop {PATH} path - Enum с путями роутинга.
  * */
 export interface MenuElement extends NavItemT {
-    path?: PATH;
+    path?: string;
 }
 
 export const menuItemsList: MenuElement[] = [
@@ -17,15 +17,15 @@ export const menuItemsList: MenuElement[] = [
         path: PATH.MAIN_PAGE,
     },
     {
-        label: 'Адаптер',
-        path: PATH.ADAPTER,
+        label: 'Структурные',
+        path: PATH.MAIN_STRUCTURAL,
     },
     {
-        label: 'Мост',
-        path: PATH.BRIDGE,
+        label: 'Порождающие',
+        path: PATH.MAIN_CREATIONAL,
     },
     {
-        label: 'Компоновщик',
-        path: PATH.COMPOSITE,
+        label: 'Поведенческие',
+        path: PATH.MAIN_BEHAVIORAL,
     },
 ];

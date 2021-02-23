@@ -6,7 +6,7 @@ const MainPage = () => {
     return (
         <Grid>
             <Cell span={12}>
-                <H3>О проекте</H3>
+                <H3>Как этот проект может помочь</H3>
             </Cell>
         </Grid>
     );

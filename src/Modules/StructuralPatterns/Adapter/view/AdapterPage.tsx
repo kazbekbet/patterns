@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { H3 } from 'baseui/typography';
 import { Cell, Grid } from 'baseui/layout-grid';
-
 import { AdapterForm } from './components/AdapterForm';
 import { Authentication } from '../example/Authentication';
 import { Adapter } from '../example/Adapter';
