@@ -21,7 +21,6 @@ export const NavigationBar: React.FC<NavigationProps> = ({ children }) => {
         setMainItems(prev => prev.map(item => ({ ...item, active: item.path === location })));
     }, [location]);
 
-
     function handleMainItemSelect(item: MenuElement) {
         item.path && history.push(item.path);
     }

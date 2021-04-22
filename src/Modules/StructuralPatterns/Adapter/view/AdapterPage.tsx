@@ -8,22 +8,35 @@ import { Adapter } from '../example/Adapter';
 /**
  * Страница паттерна "Адаптер".
  * */
-const AdapterPage = () => {
+const AdapterPage: React.FC = () => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
+    /**
+     * Аутентификация стандартным способом.
+     * */
     const handleSignInNormal = () => {
         const normalAuth = new Authentication(login, password);
         normalAuth.signIn();
     };
 
+    /**
+     * Аутентификация через адаптер.
+     * */
     const handleSignInAdapt = () => {
         const adaptUserData = new Adapter(login, password).checkAndTransformLogin();
+
         if (adaptUserData.login && adaptUserData.password) {
             const adaptAuth = new Authentication(adaptUserData.login, adaptUserData.password);
             adaptAuth.signIn();
         }
     };
+
+    /** Изменение логина. */
+    const handleChangeLogin = (value: string) => setLogin(value);
+
+    /** Изменение пароля. */
+    const handleChangePassword = (value: string) => setPassword(value);
 
     return (
         <Grid>
@@ -34,8 +47,8 @@ const AdapterPage = () => {
                 <AdapterForm
                     login={login}
                     password={password}
-                    onLoginChange={value => setLogin(value)}
-                    onPasswordChange={value => setPassword(value)}
+                    onLoginChange={handleChangeLogin}
+                    onPasswordChange={handleChangePassword}
                     signInActionNormal={handleSignInNormal}
                     signInActionAdapt={handleSignInAdapt}
                 />
